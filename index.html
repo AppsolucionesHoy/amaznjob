@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Seguro de Amazon</title>
+    <style>
+        /* RESET GENERAL Y FUENTE DE SISTEMA */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; 
+            background-color: #eef2f5; 
+            display: flex; 
+            justify-content: center; 
+            padding: 20px; 
+            margin: 0;
+        }
+
+        /* TARJETA CONTENEDORA DE ALTA FIDELIDAD (MÓVIL) */
+        .card { 
+            width: 100%; 
+            max-width: 390px; 
+            background: #ffffff; 
+            border-radius: 12px; 
+            box-shadow: 0 4px 25px rgba(0,0,0,0.08); 
+            overflow: hidden; 
+        }
+
+        /* ENCABEZADO SUPERIOR AZUL OSCURO (AMAZON NAVY) */
+        .header-top { 
+            background-color: #232f3e; 
+            padding: 24px 20px 14px 20px; 
+            text-align: center; 
+        }
+        
+        /* CONTENEDOR DE LOGOS */
+        .logos-row { 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            gap: 16px; 
+            margin-bottom: 12px;
+        }
+        
+        /* DISEÑO DE LOGO DE AMAZON CORREGIDO Y REDISEÑADO VECTORIALMENTE */
+        .amazon-logo-box {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            position: relative;
+            padding-bottom: 4px;
+        }
+        
+        .amazon-brand {
+            color: #ffffff;
+            font-size: 22px;
+            font-weight: 800;
+            letter-spacing: -1px;
+            line-height: 1;
+        }
+        
+        .amazon-brand span {
+            font-weight: 400;
+            font-size: 14px;
+            letter-spacing: 0px;
+        }
+        
+        .amazon-smile {
+            width: 76px;
+            height: 8px;
+            margin-top: 2px;
+            display: block;
+        }
+        
+        /* DIVISOR VERTICAL OBJETIVO */
+        .vertical-divider {
+            width: 1px;
+            height: 26px;
+            background-color: rgba(255, 255, 255, 0.25);
+        }
+
+        /* LOGO DE LA APLICACIÓN ASOCIADA */
+        .logo-app-google { 
+            height: 36px; 
+            width: 36px;
+            border-radius: 8px; 
+            object-fit: cover;
+            display: block;
+        }
+
+        /* SUBTEXTO DE ASOCIACIÓN */
+        .partnership-tag { 
+            display: block;
+            font-size: 9.5px; 
+            color: #bcc1c8; 
+            text-transform: uppercase; 
+            letter-spacing: 1.2px; 
+            font-weight: 600;
+        }
+
+        /* BANNER SECUNDARIO: RECRUITMENT SYSTEM */
+        .header-banner { 
+            background-color: #1a2432; 
+            border-top: 1px solid #2d3b4d; 
+            border-bottom: 1px solid #2d3b4d; 
+            padding: 11px; 
+            text-align: center; 
+        }
+        
+        .header-banner h3 { 
+            color: #ffffff; 
+            font-size: 18.5px; 
+            text-transform: uppercase; 
+            letter-spacing: 0.5px; 
+            font-weight: 700;
+        }
+
+        /* SECCIÓN DE PROGRESO DE LA OPERACIÓN */
+        .progress-box { 
+            padding: 20px 20px 10px 20px; 
+            text-align: center; 
+        }
+        
+        .progress-text { 
+            font-size: 13.5px; 
+            color: #4b5563; 
+        }
+
+        /* BARRA AL 75% CON FLUJO DE BRILLO CONTINUO */
+        .bar-container { 
+            background: #e5e7eb; 
+            height: 9px; 
+            border-radius: 20px; 
+            width: 88%; 
+            margin: 10px auto 0; 
+            position: relative; 
+            overflow: hidden;
+        }
+        
+        .bar-fill { 
+            height: 100%; 
+            width: 75%; 
+            border-radius: 20px; 
+            position: absolute; 
+            left: 0; 
+            top: 0;
+            background: linear-gradient(90deg, #ff9900 0%, #ffcc66 50%, #ff9900 100%);
+            background-size: 200% 100%;
+            animation: live-loading-glow 1.5s infinite linear;
+        }
+        
+        @keyframes live-loading-glow {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        /* CUERPO DEL CONTENIDO PRINCIPAL */
+        .main-content { 
+            padding: 12px 24px 24px 24px; 
+        }
+        
+        .step-heading { 
+            font-size: 18px; 
+            font-weight: 700; 
+            color: #111827; 
+            line-height: 1.3; 
+            margin-bottom: 16px; 
+        }
+        
+        /* CUADRO INFORMATIVO DE ALERTA */
+        .alert-info-box { 
+            background-color: #fdfaf3; 
+            border-left: 4px solid #ff9900; 
+            padding: 14px 16px; 
+            font-size: 13.5px; 
+            color: #333333; 
+            line-height: 1.5; 
+            margin-bottom: 22px; 
+            border-radius: 0 4px 4px 0;
+        }
+
+        /* LISTA DE PASOS DE INSTALACIÓN */
+        .steps-list { 
+            list-style: none; 
+            margin-bottom: 26px; 
+        }
+        
+        .steps-list li { 
+            margin-bottom: 12px; 
+            font-size: 14px; 
+            color: #111827; 
+            line-height: 1.4; 
+            position: relative;
+            padding-left: 18px;
+        }
+        
+        .steps-list li::before { 
+            content: "•"; 
+            color: #ff9900; 
+            font-weight: bold; 
+            font-size: 22px; 
+            position: absolute;
+            left: 0;
+            top: -3px;
+        }
+
+        /* BOTÓN DE ACCIÓN CON EFECTO REFUERZO 3D */
+        .btn-verify { 
+            width: 100%; 
+            background-color: #ff9900; 
+            color: #ffffff; 
+            border: none; 
+            padding: 16px; 
+            font-size: 15.5px; 
+            font-weight: 700; 
+            border-radius: 6px; 
+            cursor: pointer; 
+            text-transform: uppercase; 
+            box-shadow: 0 4px 0 #cc7a00; 
+            transition: background-color 0.1s, transform 0.1s, box-shadow 0.1s;
+        }
+        
+        .btn-verify:hover {
+            background-color: #e68a00;
+        }
+        
+        .btn-verify:active { 
+            transform: translateY(3px); 
+            box-shadow: 0 1px 0 #cc7a00; 
+        }
+
+        /* PIE DE PÁGINA SEGURO */
+        .footer-secured { 
+            margin-top: 24px; 
+            font-size: 10.5px; 
+            color: #888888; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            gap: 6px; 
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    
+    <div class="header-top">
+        <div class="logos-row">
+            <div class="amazon-logo-box">
+                <div class="amazon-brand">amazon<span>.com</span></div>
+                <svg class="amazon-smile" viewBox="0 0 100 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4 2C32 14 72 14 96 2C91 5 83 7 75 7C48 7 20 5 4 2Z" fill="#ff9900"/>
+                    <path d="M96 2L88 8L94 10L96 2Z" fill="#ff9900"/>
+                </svg>
+            </div>
+            <div class="vertical-divider"></div>
+            <img src="https://play-lh.googleusercontent.com/Lx-lkUUlaa-VfYYO_bgxW4Cp5a-4X3nfjnEHXt1iHn2FZW15s3ewUH5PT-kq9MrI5vs" alt="Playful Rewards" class="logo-app-google">
+        </div>
+        <span class="partnership-tag">Pasarela de Asociación Verificada</span>
+    </div>
+
+    <div class="header-banner">
+        <h3>Sistema de Reclutamiento</h3>
+    </div>
+    
+    <div class="progress-box">
+        <div class="progress-text">Progreso de la Solicitud: <strong>75% Completado</strong></div>
+        <div class="bar-container">
+            <div class="bar-fill"></div>
+        </div>
+    </div>
+    
+    <div class="main-content">
+        <h2 class="step-heading">Paso 2: Verificación de Identidad y Dispositivo</h2>
+        
+        <div class="alert-info-box">
+            Para prevenir el fraude y garantizar la seguridad de tu espacio de trabajo remoto, debes verificar tu dispositivo móvil utilizando nuestra aplicación de seguridad asociada.
+        </div>
+
+        <ul class="steps-list">
+            <li><strong>Instala "Playful Rewards"</strong> desde la tienda.</li>
+            <li><strong>Abre la app y registra</strong> tu información básica.</li>
+            <li>Mantén la aplicación abierta durante 30 segundos para sincronizar.</li>
+        </ul>
+
+        <button class="btn-verify" onclick="window.location.href='TU_LINK_CPA_AQUI'">Verificar y Continuar</button>
+        
+        <div class="footer-secured">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="#888888"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+            Portal Protegido por SSL • Amazon Careers
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
